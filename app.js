@@ -16,10 +16,11 @@ var commentRoutes      = require("./routes/comments"),
     indexRoutes        = require("./routes/index");
     
 //seedDB();
+console.log(process.env.DATABASEURL);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs");
-// mongoose.connect("mongodb://localhost/yelp_camp",{ useNewUrlParser: true });
-mongoose.connect("mongodb://michael:michael1@ds125385.mlab.com:25385/yelpcamp_michaelhan",{ useNewUrlParser: true });
+mongoose.connect(process.env.DATABASEURL,{ useNewUrlParser: true });
+// mongoose.connect("mongodb://michael:michael1@ds125385.mlab.com:25385/yelpcamp_michaelhan",{ useNewUrlParser: true });
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
